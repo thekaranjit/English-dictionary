@@ -14,6 +14,20 @@ def translate(word):
 
         return data[word]
 
+    elif len(get_close_matches(word, data.keys())) > 0:
+            yn = input("Did you mean %s instead? Enter Y if yes, or N for No.: " % get_close_matches(word, data.keys())[0])
+            if yn == "Y":
+                return data[get_close_matches(word, data.keys())[0]]
+
+            elif yn == "N":
+                return "The word doesnt exist. Please Try Again"
+
+            else:
+                return "We didn't understand anything"
+
+
+
+
     else:
         return "The word doesnt exist. Please Try Again"
 
@@ -22,8 +36,23 @@ def translate(word):
 
 
 
-word = input("Please input the wsexord to search the meaning: ")
+word = input("Please input the word to search the meaning: ")
 
-print(translate(word))
-#print(data["rain"])
+output = translate(word)
+
+if type(output) ==list:
+    for item in output:
+        print(item)
+
+else:
+    print(output)
+    # print(data["rain"])
+
+
+
+
+
+
+
+
 
